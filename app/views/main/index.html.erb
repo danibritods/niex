@@ -1,4 +1,12 @@
 
 <div class="d-flex align-items-center justify-content-center">
-    <h1> Niex! </h1>    
+    <h1> Niex! </h1>   
+</div>
+
+<div>
+    <% if @user %> 
+       Logged in as <%= @user.username %>
+
+       <%= button_to "Logout", logout_path, method: :delete %>
+    <% end %>
 </div>

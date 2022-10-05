@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  # GET /about
-  get "/about", to: "about#index"
-  get "/", to: "main#index"
+  get root to: "main#index"
+  get "about", to: "about#index"
+
   get "sign_up", to: "users#new"
   post "sign_up", to: "users#create"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  delete "logout", to: "sessions#destroy"
+  get "sign_in", to: "sessions#new"
+  post "sign_in", to: "sessions#create"
+
 end
