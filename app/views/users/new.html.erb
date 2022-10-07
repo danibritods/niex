@@ -1,5 +1,4 @@
-<h1>Cadastro de usuário</h1>
-<%= @user%>
+<h1>User registration</h1>
 
 <%= form_with model: @user, url: sign_up_path do |form| %>
     <% if @user.errors.any?%>
