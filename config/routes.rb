@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
 
+ get "sell", to: "sales#new"
 end

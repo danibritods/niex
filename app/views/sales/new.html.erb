@@ -1,0 +1,8 @@
+<h1>Sales screen</h1>
+<div>
+    <% if @user %> 
+       Logged in as <%= @user.username %>
+
+       <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-primary"%>
+    <% end %>
+</div>
