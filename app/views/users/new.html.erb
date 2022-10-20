@@ -1,5 +1,6 @@
-<h1>User registration</h1>
+<body class="d-grid gap-2 col-3 mx-auto align-items-center">
 
+<h1 class="px-10" >User registration</h1>
 <%= form_with model: @user, url: sign_up_path do |form| %>
     <% if @user.errors.any?%>
     <div class="alert alert-danger">
@@ -24,8 +25,11 @@
     <%= form.password_field :password_confirmation, class:"form-control" %>
     </div>
 
-    <div class="mb-3">
-    <%= form.submit %>
+    <div class="col-sm-12 text-center">
+    <%= form.submit :Submit, class: 'btn btn-primary'%>
+     <a class="btn btn-outline-primary" aria-current="page" href="/">Back</a>
     </div>
-
 <% end %>
+
+</body>
+

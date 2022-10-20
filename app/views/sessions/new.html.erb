@@ -1,3 +1,5 @@
+<body class="d-grid gap-2 col-3 mx-auto align-items-center">
+
 <h1>Sign In</h1>
 
 <%=form_with url: sign_in_path do |form| %>
@@ -11,7 +13,10 @@
     <%= form.password_field :password, class:"form-control" %>
     </div>
 
-    <div class="mb-3">
-    <%= form.submit %>
+    <div class="col-sm-12 text-center">
+    <%= form.submit :Submit, class: 'btn btn-primary'%>
+     <a class="btn btn-outline-primary" aria-current="page" href="/">Back</a>
     </div>
 <%end%>
+
+</body>
