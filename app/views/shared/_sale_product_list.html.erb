@@ -1,0 +1,25 @@
+<div>
+Products:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sale_products.last(5).each do |p| %>
+    <tr>
+
+      <th scope="row"> <%= p[:prod_count] %> </th>
+      <td> 1 </td>
+      <td> <%= p[:prod_code] %> </td>
+      <td> <%= p[:prod_name] %> </td>
+    </tr>
+    <% end%>
+
+  </tbody>
+</table>

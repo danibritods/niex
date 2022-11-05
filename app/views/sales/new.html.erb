@@ -1,8 +1,24 @@
 <h1>Sales screen</h1>
-<div>
-    <% if @user %> 
-       Logged in as <%= @user.username %>
 
-       <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-primary"%>
-    <% end %>
+
+<%= form_tag sell_path, :method => 'get' do %>
+  <p>
+   <%= text_field_tag :search_text, params[:search_text] %>
+   <%#= submit_tag 'Search' %>
+  </p>
+<% end %>
+<%# <%= link_to 'Button', my_action_controller_path(session_id: sessionId, token_document: token_document) %> %>
+
+Last product: <%=@product%>
+
+<div>
+<%= render partial: "shared/sale_product_list"%> 
 </div>
+
+<footer class="footer">
+<%= "----" * 36%>
+    <% if @user %> 
+       <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-primary mt-2"%>
+       Logged in as <%= @user.username %>
+    <% end %>
+</footer>
