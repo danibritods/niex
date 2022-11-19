@@ -3,11 +3,11 @@
 
 <%= form_tag sell_path, :method => 'get' do %>
   <p>
-   <%= text_field_tag :search_text, params[:search_text] %>
+   <%= text_field_tag :search_text, params[:search_text], autofocus: true %>
    <%#= submit_tag 'Search' %>
   </p>
 <% end %>
-<%# <%= link_to 'Button', my_action_controller_path(session_id: sessionId, token_document: token_document) %> %>
+<%# <%= link_to 'Button', my_action_controller_path(session_id: sessionId, token_document: token_document) %> 
 
 Last product: <%=@product%>
 
@@ -19,6 +19,6 @@ Last product: <%=@product%>
 <%= "----" * 36%>
     <% if @user %> 
        <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-primary mt-2"%>
-       Logged in as <%= @user.username %>
+       Logged in as <%= @user.username %> role: <%= @user.role%>
     <% end %>
 </footer>

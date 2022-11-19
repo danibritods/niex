@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
 
  get "sell", to: "sales#new"
+ get "get_prod", to: "sales#search"
+
+#  get "products", to: "products#index" 
+#  get "products/:id", to: "products#show"
+ resources :products
 end

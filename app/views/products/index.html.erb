@@ -1,0 +1,19 @@
+<h1>Products</h1>
+
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= link_to product.description, product %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= link_to "New Product", new_product_path %>
+<footer class="footer">
+<%= "----" * 36%>
+    <% if @user %> 
+       <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-primary mt-2"%>
+       Logged in as <%= @user.username %>
+    <% end %>
+</footer>
