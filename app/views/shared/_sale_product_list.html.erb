@@ -1,25 +1,29 @@
-<div>
-Products:
+<div class="table-wrapper-scroll-y">
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Code</th>
-      <th scope="col">Name</th>
-    </tr>
-  </thead>
+  <table class="table table-bordered table-striped mb-0">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Barcode</th>
+        <th scope="col">Description</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Total Price</th>
+
+   
+      </tr>
+    </thead>
+
   <tbody>
     <% @sale_products.last(5).each do |p| %>
     <tr>
-
       <th scope="row"> <%= p[:prod_count] %> </th>
-      <td> 1 </td>
+      <td>  <%= p[:prod_quantity] %>  </td>
       <td> <%= p[:prod_code] %> </td>
       <td> <%= p[:prod_name] %> </td>
+      <td> <%= p[:prod_price] %> </td>
+      <td> <%= p[:prod_total] %> </td>
     </tr>
     <% end%>
-
   </tbody>
-</table>
+  </table>

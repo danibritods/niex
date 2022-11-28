@@ -1,24 +1,29 @@
 <h1>Sales screen</h1>
 
-
-<%= form_tag sell_path, :method => 'get' do %>
+<%= form_for sell_path, method: :post do |f|%>
   <p>
-   <%= text_field_tag :search_text, params[:search_text], autofocus: true %>
-   <%#= submit_tag 'Search' %>
+   <%= f.text_field :query, autofocus: true %>
+   <%f.submit%>
   </p>
 <% end %>
-<%# <%= link_to 'Button', my_action_controller_path(session_id: sessionId, token_document: token_document) %> 
 
+<h2><%=@total%></h2>
 Last product: <%=@product%>
 
 <div>
-<%= render partial: "shared/sale_product_list"%> 
+  <%= render partial: "shared/sale_product_list"%> 
+</div>
+
+
+<div>
+  <%= button_to "Finish sale", sell_path, method: :get, class: "btn btn-outline-primary mt-2"%>
+  <%= button_to "Cancel sale", sale_path, method: :delete, class: "btn btn-outline-danger mt-2"%>
 </div>
 
 <footer class="footer">
 <%= "----" * 36%>
     <% if @user %> 
-       <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-primary mt-2"%>
+       <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-danger mt-2"%>
        Logged in as <%= @user.username %> role: <%= @user.role%>
     <% end %>
 </footer>
