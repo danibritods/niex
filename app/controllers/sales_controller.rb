@@ -29,8 +29,8 @@ class SalesController < ApplicationController
     def search 
         # @product = params["/sell"]["query"]
         query = params["/sell"]["query"]
-        quantity, prod = treat_query(query)
-        Sale.new_product(quantity, prod)
+        quantity, prod_code = treat_query(query)
+        Sale.new_product(quantity, prod_code)
         redirect_to sale_url
     end
     def destroy
@@ -42,8 +42,8 @@ class SalesController < ApplicationController
      def treat_query(query)
          split_query = query.split("*")
              if split_query.count == 2
-                     quantity, prod = split_query
-                     return [quantity, prod]
+                     quantity, prod_code = split_query
+                     return [quantity, prod_code]
                  else
                      return ["1", split_query[0]]
              end
@@ -51,16 +51,16 @@ class SalesController < ApplicationController
 end
 
 class Sale
-    # def self.initialize
-        @@products = []
-        @@products_count = 0
-        @@inventory = {}
-        @@sale_total = 0
-    # end
 
-   def self.new_product(quantity, prod)
-        @@products_count += 1
-        prod_info = get_product(prod)
+    @@products = []
+    @@products_count = 0
+    @@inventory = {}
+    @@sale_total = 0
+
+
+   def self.new_product(quantity, prod_code)
+        @@products_count += 1 
+        prod_info = get_product(prod_code)
         prod_total = prod_info[:prod_price].to_f * quantity.to_f
         @@sale_total += prod_total
     
@@ -83,12 +83,23 @@ class Sale
     @@sale_total = 0
    end
 
-   def self.get_product(prod_code) 
-     @@inventory[prod_code] || {prod_count: @@products_count,
-                                prod_code: prod_code,
+    def self.get_product_test(prod_code) 
+     @@inventory[prod_code] || {prod_code: prod_code,
                                 prod_name: "abc_" + prod_code,
                                 prod_price: 9.99}
     end
+    def self.get_product(prod_code) 
+        prod = Product.find_by(barcode: prod_code)
+        if prod
+            {prod_code: prod.barcode, prod_name: prod.description, prod_price: prod.price}
+        else
+            {prod_code: prod_code,
+            prod_name: "abc_" + prod_code,
+            prod_price: 9.99}
+        end
+    end
+
+
 
    def self.build_inventory()
     prod_list = [
