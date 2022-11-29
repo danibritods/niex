@@ -3,14 +3,14 @@ class SalesController < ApplicationController
         # @search = " "#params[:barcode_query]
         # @sale_products = []
         # if params[:barcode_query]
-        #     Sale.new_product(@product)
-        #     @sale_products = Sale.show_products
+        #     Cart.new_product(@product)
+        #     @sale_products = Cart.show_products
         # end
     end
 
     def create
-        #Sale.save
-        Sale.destroy
+        #Cart.save
+        Cart.destroy
         redirect_to sale_url
     end
 
@@ -18,10 +18,10 @@ class SalesController < ApplicationController
         if session[:user_id]
             @user = User.find(session[:user_id])
             if not @total
-                Sale.build_inventory
+                Cart.build_inventory
             end
-            @sale_products = Sale.show_products
-            @total = Sale.show_total
+            @sale_products = Cart.show_products
+            @total = Cart.show_total
 
         end
     end
@@ -30,11 +30,11 @@ class SalesController < ApplicationController
         # @product = params["/sell"]["query"]
         query = params["/sell"]["query"]
         quantity, prod_code = treat_query(query)
-        Sale.new_product(quantity, prod_code)
+        Cart.new_product(quantity, prod_code)
         redirect_to sale_url
     end
     def destroy
-        Sale.destroy
+        Cart.destroy
         redirect_to sale_url
     end
     
@@ -50,13 +50,13 @@ class SalesController < ApplicationController
     end
 end
 
-class Sale
+class Cart
 
     @@products = []
     @@products_count = 0
     @@inventory = {}
     @@sale_total = 0
-
+    @@sales_archive = []
 
    def self.new_product(quantity, prod_code)
         @@products_count += 1 

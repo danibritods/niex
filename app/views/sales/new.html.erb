@@ -1,24 +1,46 @@
-<h1>Sales screen</h1>
+<%# 
+<nav class="navbar  navbar-light bg-light mb-50">
+  <span class="navbar-brand mb-0 h1">Sales Screen</span>
+  <a class="navbar-brand">
+    <img src="/Niex_logo.png"  height="30" alt="">
+  </a>
+</nav>
+<div class="col-sm-12 mb-2 text-center"> %>
 
-<%= form_for sell_path, method: :post do |f|%>
-  <p>
-   <%= f.text_field :query, autofocus: true %>
-   <%f.submit%>
-  </p>
-<% end %>
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">
+    <img src="/Niex_logo.png"  height="30" alt="">
+  </a>
+  <a class="navbar-brand">Sales Screen</a>
+  <div class="my-2 my-sm-0">
+    <%= form_for sell_path, method: :post do |f|%>
+      <p>
+      <%= f.text_field :query, autofocus: true %>
+      <%f.submit%>
+      </p>
+    <% end %>
+  </div>
+<div class="row">
+  <div class="col">
+    <%= button_to "Finish sale", sell_path, method: :get, class: "btn btn-outline-primary my-2 my-sm-0"%>
+  </div>
+  <div class="col">
+    <%= button_to "Cancel sale", sale_path, method: :delete, class: "btn btn-outline-danger my-2 my-sm-0"%>
+  </div>
+</div>
+</nav>
+
+
 
 <h2>Total: <%=@total%></h2>
-Last product: <%=@product%>
 
 <div>
   <%= render partial: "shared/sale_product_list"%> 
 </div>
 
-
-<div class="row">
-  <%= button_to "Finish sale", sell_path, method: :get, class: "btn btn-outline-primary mt-2"%>
-  <%= button_to "Cancel sale", sale_path, method: :delete, class: "btn btn-outline-danger mt-2"%>
-</div>
+    <%# <%= button_to "Finish sale", sell_path, method: :get, class: "btn btn-outline-primary mt-2"%>
+    <%# <%= button_to "Cancel sale", sale_path, method: :delete, class: "btn btn-outline-danger mt-2"%> 
 
 <footer class="footer">
 <%= "----" * 36%>

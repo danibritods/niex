@@ -1,4 +1,11 @@
-<h1>Products List</h1>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">
+    <img src="/Niex_logo.png"  height="30" alt="">
+  </a>
+  <a class="navbar-brand">Products List</a>
+<%= button_to "New Product", new_product_path, method: :get, class: "btn btn-outline-primary mt-2"%>
+
+</nav>
 
   <table class="table table-bordered table-striped mb-0">
     <thead>
@@ -25,8 +32,6 @@
   </tbody>
   </table>
 
-
-<%= button_to "New Product", new_product_path, method: :get, class: "btn btn-outline-primary mt-2"%>
 
 <footer class="footer">
 <%= "----" * 36%>
