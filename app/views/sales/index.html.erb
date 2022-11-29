@@ -1,9 +1,3 @@
-<h1>INdes <%=@test%></h1>
+<h1>Sales Index </h1>
 
-<%= form_for(@search, :url => { :action => "index" }, :html => {:method => :get} ) do |f| %>
-<%= f.text_field(:barcode_query)%>
-<%end%>
-
-<div>
-<%= render partial: "shared/sale_product_list"%> 
-</div>
+<%=@sales%>

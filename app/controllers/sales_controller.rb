@@ -1,17 +1,18 @@
 class SalesController < ApplicationController
     def index
-        # @search = " "#params[:barcode_query]
-        # @sale_products = []
-        # if params[:barcode_query]
-        #     Cart.new_product(@product)
-        #     @sale_products = Cart.show_products
-        # end
+        if session[:user_id]
+            @user = User.find(session[:user_id])
+            @sales = Cart.fetch_sales()
+        end
     end
 
     def create
-        #Cart.save
-        Cart.destroy
-        redirect_to sale_url
+        if session[:user_id]
+            @user = User.find(session[:user_id])
+            Cart.save(@user.username)
+            #Cart.destroy
+            redirect_to sale_url
+        end
     end
 
     def new
@@ -110,4 +111,13 @@ class Cart
     @@inventory = prod_list.map{|prod_code, prod_name, prod_price| [prod_code, {prod_code: prod_code, prod_name: prod_name, prod_price: prod_price}]}.to_h
    end
    
+
+   def self.save(cashier)
+    @@sales_archive.append({timestamp: Time.now - 3*3600, cashier: cashier, prods: @@products, total: @@sale_total})
+    destroy()
+   end
+
+   def self.fetch_sales
+    @@sales_archive
+   end
 end
