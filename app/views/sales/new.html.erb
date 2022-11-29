@@ -7,7 +7,7 @@
   </p>
 <% end %>
 
-<h2><%=@total%></h2>
+<h2>Total: <%=@total%></h2>
 Last product: <%=@product%>
 
 <div>
@@ -24,6 +24,6 @@ Last product: <%=@product%>
 <%= "----" * 36%>
     <% if @user %> 
        <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-danger mt-2"%>
-       Logged in as <%= @user.username %> role: <%= @user.role%>
+       Logged in as <%= @user.username %>. Role: <%= @user.role%>
     <% end %>
 </footer>

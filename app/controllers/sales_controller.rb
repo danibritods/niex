@@ -63,10 +63,9 @@ class Sale
         prod_info = get_product(prod_code)
         prod_total = prod_info[:prod_price].to_f * quantity.to_f
         @@sale_total += prod_total
-    
-        @@products.append(
-            {prod_count: @@products_count, prod_quantity: quantity, prod_total: prod_total }.merge(prod_info)
-        )
+
+        prod_row = {prod_count: @@products_count, prod_quantity: quantity, prod_total: prod_total }.merge(prod_info)
+        @@products.append(prod_row)
    end
 
    def self.show_products

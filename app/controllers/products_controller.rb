@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
     def index 
-        @products = Product.all
+        @products = Product.all.order(:id)
          if session[:user_id]
             @user = User.find(session[:user_id])
          end

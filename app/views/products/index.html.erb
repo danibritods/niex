@@ -1,13 +1,29 @@
-<h1>Products</h1>
+<h1>Products List</h1>
+
+  <table class="table table-bordered table-striped mb-0">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Barcode</th>
+        <th scope="col">Description</th>
+        <th scope="col">Unit Price</th>
 
 
-<ul>
-  <% @products.each do |product| %>
-    <li>
-      <%= link_to product.description, product %> <%=product.barcode%> <%=product.price%> 
-    </li>
-  <% end %>
-</ul>
+   
+      </tr>
+    </thead>
+
+  <tbody>
+    <% @products.each do |p| %>
+    <tr>
+      <th scope="row"> <%= p.id %> </th>
+      <td> <%= p.barcode %> </td>
+      <td> <%= link_to p.description, p %> </td>
+      <td> <%= p.price %> </td>
+    </tr>
+    <% end%>
+  </tbody>
+  </table>
 
 
 <%= button_to "New Product", new_product_path, method: :get, class: "btn btn-outline-primary mt-2"%>
